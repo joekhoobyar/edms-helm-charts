@@ -1,0 +1,17 @@
+apiVersion: v2
+name: mayan-edms
+description: Mayan EDMS
+type: application
+version: 0.1.0
+appVersion: 3.3.13
+keywords:
+  - edms
+  - dms
+  - mayan-edms
+home: https://mayan-edms.com/
+icon: https://mayan-edms.com/favicon.ico
+sources:
+  - https://github.com/mayan-edms/Mayan-EDMS
+maintainers:
+  - name: joekhoobyar
+    email: fourheads@gmail.com
