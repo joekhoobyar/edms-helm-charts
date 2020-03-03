@@ -8,14 +8,14 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
-extraVolumes: |
+extraVolumes: []
   # - name: extras
   #   emptyDir: {}
-extraVolumeMounts: |
+extraVolumeMounts: []
   # - name: extras
   #   mountPath: /usr/share/extras
   #   readOnly: true
-extraInitContainers: |
+extraInitContainers: []
   # - name: do-something
   #   image: busybox
   #   command: ['do', 'something']
@@ -75,7 +75,6 @@ podSecurityContext: {}
   # fsGroup: 2000
 
 securityContext: {}
-  runAsUser: 999
   # capabilities:
   #   drop:
   #   - ALL

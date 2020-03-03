@@ -29,7 +29,7 @@ spec:
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image }}:{{ .Values.imageTag }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          imagePullPolicy: {{ .Values.imagePullPolicy }}
           envFrom:
             - secretRef:
                 name: {{ include "mayan-edms.fullname" . }}-env
