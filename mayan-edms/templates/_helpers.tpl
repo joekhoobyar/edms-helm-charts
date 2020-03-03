@@ -107,5 +107,5 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 Determine redis host based on use of postgresql dependency.
 */}}
 {{- define "mayan-edms.redis.host" -}}
-{{- template "mayan-edms.redis.fullname" . -}}
+{{- template "mayan-edms.redis.fullname" . -}}-redis-master
 {{- end -}}

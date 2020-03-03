@@ -37,19 +37,19 @@ readinessProbe:
 postgresql:
   enabled: true
   # nameOverride: postgresql
-  # postgresDatabase: mayan
-  # postgresUser: mayan
-  # postgresPassword: mayandbpass
+  postgresDatabase: mayan
+  postgresUser: mayan
+  postgresPassword: mayandbpass
 
 redis:
   enabled: true
   # nameOverride: redis
-  # password: mayanredispassword
-  # redisPort: 6379
+  password: mayanredispassword
+  redisPort: 6379
 
 ## Persist data to a persistent volume
 persistence:
-  enabled: true
+  enabled: false
   ## database data Persistent Volume Storage Class
   ## If defined, storageClassName: <storageClass>
   ## If set to "-", storageClassName: "", which disables dynamic provisioning
