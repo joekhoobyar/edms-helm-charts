@@ -15,3 +15,12 @@ sources:
 maintainers:
   - name: joekhoobyar
     email: fourheads@gmail.com
+dependencies:
+  - name: postgresql
+    version: 8.1.2
+    repository: https://kubernetes-charts.storage.googleapis.com/
+    condition: postgresql.enabled
+  - name: redis
+    version: 10.5.6
+    repository: https://kubernetes-charts.storage.googleapis.com/
+    condition: redis.enabled

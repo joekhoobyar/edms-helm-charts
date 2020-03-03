@@ -34,6 +34,12 @@ readinessProbe:
   successThreshold: 1
   failureThreshold: 3
 
+postgres:
+  enabled: true
+
+redis:
+  enabled: true
+
 ## Persist data to a persistent volume
 persistence:
   enabled: true
