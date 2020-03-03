@@ -34,11 +34,18 @@ readinessProbe:
   successThreshold: 1
   failureThreshold: 3
 
-postgres:
+postgresql:
   enabled: true
+  # nameOverride: postgresql
+  # postgresDatabase: mayan
+  # postgresUser: mayan
+  # postgresPassword: mayandbpass
 
 redis:
   enabled: true
+  # nameOverride: redis
+  # password: mayanredispassword
+  # redisPort: 6379
 
 ## Persist data to a persistent volume
 persistence:
@@ -79,7 +86,7 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 80
+  annotations: {}
 
 ingress:
   enabled: false

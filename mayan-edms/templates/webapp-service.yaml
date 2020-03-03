@@ -4,10 +4,14 @@ metadata:
   name: {{ include "mayan-edms.fullname" . }}
   labels:
     {{- include "mayan-edms.labels" . | nindent 4 }}
+  {{- if .Values.service.annotations }}
+  annotations:
+    {{ toYaml .Values.service.annotations | indent 4 }}
+  {{- end }}
 spec:
   type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.port }}
+    - port: 80
       targetPort: http
       protocol: TCP
       name: http

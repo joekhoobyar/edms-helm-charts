@@ -11,5 +11,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args: ['{{ include "mayan-edms.fullname" . }}:{{ .Values.service.port }}']
+      args: ['{{ include "mayan-edms.fullname" . }}:80']
   restartPolicy: Never
