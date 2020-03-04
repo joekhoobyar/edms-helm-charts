@@ -37,9 +37,9 @@ readinessProbe:
 postgresql:
   enabled: true
   # nameOverride: postgresql
-  postgresDatabase: mayan
-  postgresUser: mayan
-  postgresPassword: mayandbpass
+  postgresqlDatabase: mayan
+  postgresqlUsername: mayan
+  postgresqlPassword: mayandbpass
 
 redis:
   enabled: true

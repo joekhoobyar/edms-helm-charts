@@ -119,5 +119,5 @@ redis://:{{ .Values.redis.password }}@{{ template "mayan-edms.redis.host" . }}:{
 {{- end -}}
 
 {{- define "mayan-edms.env.databases" -}}
-{'default':{'ENGINE':'django.db.backends.postgresql','NAME':'{{ .Values.postgresql.postgresDatabase }}','PASSWORD':'{{ .Values.postgresql.postgresPassword }}','USER':'{{ .Values.postgresql.postgresUser }}','HOST':'{{ template "mayan-edms.postgresql.host" . }}'}}
+{'default':{'ENGINE':'django.db.backends.postgresql','NAME':'{{ .Values.postgresql.postgresqlDatabase }}','PASSWORD':'{{ .Values.postgresql.postgresqlPassword }}','USER':'{{ .Values.postgresql.postgresqlUsername }}','HOST':'{{ template "mayan-edms.postgresql.host" . }}'}}
 {{- end -}}
