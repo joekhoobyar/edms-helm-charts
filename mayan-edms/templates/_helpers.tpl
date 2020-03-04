@@ -110,14 +110,23 @@ Determine redis host based on use of redis dependency.
 {{- template "mayan-edms.redis.fullname" . -}}-redis-master
 {{- end -}}
 
+{{/*
+Determine the value of the MAYAN_CELERY_BROKEN_URL env var.
+*/}}
 {{- define "mayan-edms.env.celery-broker-url" -}}
 redis://:{{ .Values.redis.password }}@{{ template "mayan-edms.redis.host" . }}:{{ .Values.redis.redisPort }}/0
 {{- end -}}
 
+{{/*
+Determine the value of the MAYAN_CELERY_RESULT_BACKEND env var.
+*/}}
 {{- define "mayan-edms.env.celery-result-backend" -}}
 redis://:{{ .Values.redis.password }}@{{ template "mayan-edms.redis.host" . }}:{{ .Values.redis.redisPort }}/1
 {{- end -}}
 
+{{/*
+Determine the value of the MAYAN_DATABASES env var.
+*/}}
 {{- define "mayan-edms.env.databases" -}}
 {'default':{'ENGINE':'django.db.backends.postgresql','NAME':'{{ .Values.postgresql.postgresqlDatabase }}','PASSWORD':'{{ .Values.postgresql.postgresqlPassword }}','USER':'{{ .Values.postgresql.postgresqlUsername }}','HOST':'{{ template "mayan-edms.postgresql.host" . }}'}}
 {{- end -}}
