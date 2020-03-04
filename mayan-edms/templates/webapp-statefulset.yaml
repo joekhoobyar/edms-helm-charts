@@ -44,7 +44,7 @@ spec:
             successThreshold: {{ .Values.livenessProbe.successThreshold }}
             failureThreshold: {{ .Values.livenessProbe.failureThreshold }}
             httpGet:
-              path: /
+              path: /authentication/login/
               port: http
           readinessProbe:
             initialDelaySeconds: {{ .Values.readinessProbe.initialDelaySeconds }}
@@ -53,7 +53,7 @@ spec:
             successThreshold: {{ .Values.readinessProbe.successThreshold }}
             failureThreshold: {{ .Values.readinessProbe.failureThreshold }}
             httpGet:
-              path: /
+              path: /authentication/login/
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
