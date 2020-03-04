@@ -87,7 +87,7 @@ Determine postgresql host based on use of postgresql dependency.
 {{- end -}}
 
 {{/*
-Determine the fully qualified postgresql name.
+Determine the fully qualified redis name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 */}}
 {{- define "mayan-edms.redis.fullname" -}}
@@ -104,8 +104,20 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 {{- end -}}
 
 {{/*
-Determine redis host based on use of postgresql dependency.
+Determine redis host based on use of redis dependency.
 */}}
 {{- define "mayan-edms.redis.host" -}}
 {{- template "mayan-edms.redis.fullname" . -}}-redis-master
+{{- end -}}
+
+{{- define "mayan-edms.env.celery-broker-url" -}}
+redis://:{{ .Values.redis.password }}@{{ template "mayan-edms.redis.host" . }}:{{ .Values.redis.redisPort }}/0
+{{- end -}}
+
+{{- define "mayan-edms.env.celery-result-backend" -}}
+redis://:{{ .Values.redis.password }}@{{ template "mayan-edms.redis.host" . }}:{{ .Values.redis.redisPort }}/1
+{{- end -}}
+
+{{- define "mayan-edms.env.databases" -}}
+{'default':{'ENGINE':'django.db.backends.postgresql','NAME':'{{ .Values.postgresql.postgresDatabase }}','PASSWORD':'{{ .Values.postgresql.postgresPassword }}','USER':'{{ .Values.postgresql.postgresUser }}','HOST':'{{ template "mayan-edms.postgresql.host" . }}'}}
 {{- end -}}
