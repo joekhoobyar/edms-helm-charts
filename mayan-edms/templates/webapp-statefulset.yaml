@@ -32,7 +32,7 @@ spec:
           imagePullPolicy: {{ .Values.imagePullPolicy }}
           env:
             - name: MAYAN_SKIP_CHOWN_ON_STARTUP
-              value: 1
+              value: '1'
             - name: MAYAN_PIP_INSTALLS
               value: {{ include "mayan-edms.env.pip-installs" . | quote }}
           {{- if .Values.objectstorage.enabled }}
