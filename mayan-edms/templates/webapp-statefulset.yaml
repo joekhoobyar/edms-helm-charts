@@ -30,6 +30,13 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image }}:{{ default .Chart.AppVersion .Values.imageTag }}"
           imagePullPolicy: {{ .Values.imagePullPolicy }}
+          env:
+            - name: MAYAN_PIP_INSTALLS
+              value: {{ include "mayan-edms.env.pip-installs" . | quote }}
+          {{- if .Values.objectstorage.enabled }}
+            - name: MAYAN_DOCUMENTS_STORAGE_BACKEND
+              value: storages.backends.s3boto3.S3Boto3Storage
+          {{- end }}
           envFrom:
             - secretRef:
                 name: {{ include "mayan-edms.fullname" . }}-env

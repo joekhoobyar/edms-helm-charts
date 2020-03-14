@@ -130,3 +130,24 @@ Determine the value of the MAYAN_DATABASES env var.
 {{- define "mayan-edms.env.databases" -}}
 {'default':{'ENGINE':'django.db.backends.postgresql','NAME':'{{ .Values.postgresql.postgresqlDatabase }}','PASSWORD':'{{ .Values.postgresql.postgresqlPassword }}','USER':'{{ .Values.postgresql.postgresqlUsername }}','HOST':'{{ template "mayan-edms.postgresql.host" . }}'}}
 {{- end -}}
+
+{{/*
+Determine the value of the MAYAN_PIP_INSTALLS env var.
+*/}}
+{{- define "mayan-edms.env.pip-installs" -}}
+{{- if .Values.objectstorage.enabled -}}
+django-storages boto3
+{{- end -}}
+{{- end -}}
+
+{{/*
+Determine the value of the MAYAN_STORAGE_BACKEND_ARGUMENTS env var.
+*/}}
+{{- define "mayan-edms.env.storage-backend-args" -}}
+{'bucket_name':'{{- .Values.objectstorage.bucketName -}}'
+{{- if .Values.objectstorage.accessKey -}},'access_key':'{{- .Values.objectstorage.accessKey -}}'{{- end -}}
+{{- if .Values.objectstorage.secretKey -}},'secret_key':'{{- .Values.objectstorage.secretKey -}}'{{- end -}}
+{{- if .Values.objectstorage.defaultAcl -}},'default_acl':'{{- .Values.objectstorage.defaultAcl -}}'{{- end -}}
+{{- if .Values.objectstorage.endpointUrl -}},'endpoint_url':'{{- .Values.objectstorage.endpointUrl -}}'{{- end -}}
+,'verify':'{{- if .Values.objectstorage.verifyTls -}}true{{- else -}}false{{- end -}}'}
+{{- end -}}

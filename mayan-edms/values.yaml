@@ -48,10 +48,20 @@ redis:
   password: mayanredispassword
   redisPort: 6379
 
-## Persist data to a persistent volume
+## Persist document data to object storage
+objectstorage:
+  enabled: false
+  # accessKey: foo
+  # secretKey: bar
+  # endpointUrl: http://minio-0.minio-svc:9000
+  verifyTls: true
+  bucketName: mayan-edms-documents
+  defaultAcl: private
+
+## Persist document data to a persistent volume
 persistence:
   enabled: false
-  ## database data Persistent Volume Storage Class
+  ## document data Persistent Volume Storage Class
   ## If defined, storageClassName: <storageClass>
   ## If set to "-", storageClassName: "", which disables dynamic provisioning
   ## If undefined (the default) or set to null, no storageClassName spec is
