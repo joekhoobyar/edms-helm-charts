@@ -3,7 +3,7 @@ name: edms-analyzer
 description: Middleware for analyzing and classifying EDMS documents.
 type: application
 version: 0.1.0
-appVersion: 20160315
+appVersion: '20200315'
 keywords:
   - edms
   - dms
