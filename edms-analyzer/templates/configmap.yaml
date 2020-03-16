@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    {{- include "edms-analyzer.labels" . | nindent 4 }}
+  name: {{ template "edms-analyzer.fullname" . }}-config
+data:
+  config.yml: |-
+{{ .Values.configYaml | indent 4 }}

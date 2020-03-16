@@ -1,0 +1,13 @@
+apiVersion: v2
+name: edms-analyzer
+description: Middleware for analyzing and classifying EDMS documents.
+type: application
+version: 0.1.0
+appVersion: 20160315
+keywords:
+  - edms
+  - dms
+  - mayan-edms
+maintainers:
+  - name: joekhoobyar
+    email: fourheads@gmail.com

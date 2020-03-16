@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "edms-analyzer.fullname" . }}-test-connection"
+  labels:
+    {{- include "edms-analyzer.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test-success
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['{{ include "edms-analyzer.fullname" . }}:9292']
+  restartPolicy: Never
