@@ -34,7 +34,7 @@ spec:
             - secretRef:
                 name: {{ include "edms-analyzer.fullname" . }}-env
           volumeMounts:
-            - mountPath: /home/svc/edms-analzyer/config.yml
+            - mountPath: /home/svc/edms-analyzer/config.yml
               name: config-yaml
               subPath: config.yml
           ports:
