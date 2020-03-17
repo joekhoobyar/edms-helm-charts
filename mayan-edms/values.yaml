@@ -8,6 +8,12 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
+tuning: {}
+  # gunicornWorkers: 2
+  # fastQueueWorkers: 1
+  # mediumQueueWorkers: 1
+  # slowQueueWorkers: 1
+
 extraVolumes: []
   # - name: extras
   #   emptyDir: {}
