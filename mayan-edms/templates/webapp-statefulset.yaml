@@ -37,19 +37,19 @@ spec:
               value: {{ include "mayan-edms.env.pip-installs" . | quote }}
           {{- if .Values.tuning.gunicornWorkers }}
             - name: MAYAN_GUNICORN_WORKERS
-              value: {{ .Values.tuning.gunicornWorkers }}
+              value: {{ .Values.tuning.gunicornWorkers | quote }}
           {{- end }}
           {{- if .Values.tuning.fastQueueWorkers }}
             - name: MAYAN_WORKER_FAST_CONCURRENCY
-              value: {{ .Values.tuning.fastQueueWorkers }}
+              value: {{ .Values.tuning.fastQueueWorkers | quote }}
           {{- end }}
           {{- if .Values.tuning.mediumQueueWorkers }}
             - name: MAYAN_WORKER_MEDIUM_CONCURRENCY
-              value: {{ .Values.tuning.mediumQueueWorkers }}
+              value: {{ .Values.tuning.mediumQueueWorkers | quote }}
           {{- end }}
           {{- if .Values.tuning.slowQueueWorkers }}
             - name: MAYAN_WORKER_SLOW_CONCURRENCY
-              value: {{ .Values.tuning.slowQueueWorkers }}
+              value: {{ .Values.tuning.slowQueueWorkers | quote }}
           {{- end }}
           {{- if .Values.objectstorage.enabled }}
             - name: MAYAN_DOCUMENTS_STORAGE_BACKEND
