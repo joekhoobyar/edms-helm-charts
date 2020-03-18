@@ -2,8 +2,8 @@ apiVersion: v2
 name: edms-analyzer
 description: Middleware for analyzing and classifying EDMS documents.
 type: application
-version: 0.1.1
-appVersion: '20200316'
+version: 0.1.2
+appVersion: '20200318'
 keywords:
   - edms
   - dms
