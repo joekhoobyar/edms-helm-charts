@@ -26,8 +26,15 @@ extraInitContainers: []
   #   image: busybox
   #   command: ['do', 'something']
 
-livenessProbe:
+startupProbe:
   initialDelaySeconds: 30
+  periodSeconds: 10
+  timeoutSeconds: 5
+  successThreshold: 1
+  failureThreshold: 27
+
+livenessProbe:
+  initialDelaySeconds: 5
   periodSeconds: 10
   timeoutSeconds: 5
   successThreshold: 1
@@ -36,7 +43,7 @@ livenessProbe:
 readinessProbe:
   initialDelaySeconds: 5
   periodSeconds: 10
-  timeoutSeconds: 1
+  timeoutSeconds: 5
   successThreshold: 1
   failureThreshold: 3
 

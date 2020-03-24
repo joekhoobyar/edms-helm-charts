@@ -62,6 +62,17 @@ spec:
             - name: http
               containerPort: 8000
               protocol: TCP
+        {{- if semverCompare ">=1.16-0" .Capabilities.KubeVersion.GitVersion -}}
+          startupProbe:
+            initialDelaySeconds: {{ .Values.startupProbe.initialDelaySeconds }}
+            periodSeconds: {{ .Values.startupProbe.periodSeconds }}
+            timeoutSeconds: {{ .Values.startupProbe.timeoutSeconds }}
+            successThreshold: {{ .Values.startupProbe.successThreshold }}
+            failureThreshold: {{ .Values.startupProbe.failureThreshold }}
+            httpGet:
+              path: /authentication/login/
+              port: http
+        {{- end }}
           livenessProbe:
             initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
             periodSeconds: {{ .Values.livenessProbe.periodSeconds }}
