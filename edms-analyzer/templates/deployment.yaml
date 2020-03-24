@@ -42,11 +42,11 @@ spec:
               containerPort: 9292
               protocol: TCP
           livenessProbe:
-            tcpSocket:
-              port: http
+            httpGet:
+              path: /heartbeat
           readinessProbe:
-            tcpSocket:
-              port: http
+            httpGet:
+              path: /heartbeat
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       volumes:
