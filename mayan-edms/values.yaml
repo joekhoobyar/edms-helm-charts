@@ -55,6 +55,9 @@ postgresql:
   postgresqlPassword: mayandbpass
   postgresqlPostgresPassword: mayandbpass
 
+rabbitmq:
+  enabled: false
+
 redis:
   enabled: true
   # nameOverride: redis
