@@ -104,6 +104,23 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 {{- end -}}
 
 {{/*
+Determine the fully qualified rabbitmq name.
+We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
+*/}}
+{{- define "mayan-edms.rabbitmq.fullname" -}}
+{{- if .Values.fullnameOverride -}}
+{{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" -}}
+{{- else -}}
+{{- $name := default .Chart.Name .Values.nameOverride -}}
+{{- if contains $name .Release.Name -}}
+{{- .Release.Name | trunc 63 | trimSuffix "-" -}}
+{{- else -}}
+{{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
+{{- end -}}
+{{- end -}}
+
+{{/*
 Determine redis host based on use of redis dependency.
 */}}
 {{- define "mayan-edms.redis.host" -}}
@@ -111,10 +128,21 @@ Determine redis host based on use of redis dependency.
 {{- end -}}
 
 {{/*
+Determine rabbitmq host based on use of rabbitmq dependency.
+*/}}
+{{- define "mayan-edms.rabbitmq.host" -}}
+{{- template "mayan-edms.rabbitmq.fullname" . -}}-rabbitmq
+{{- end -}}
+
+{{/*
 Determine the value of the MAYAN_CELERY_BROKEN_URL env var.
 */}}
 {{- define "mayan-edms.env.celery-broker-url" -}}
+{{- if eq .Values.broker.type "rabbitmq" -}}
+amqp://{{ .Values.rabbitmq.rabbitmq.username }}:{{ .Values.rabbitmq.rabbitmq.password }}@{{ template "mayan-edms.rabbitmq.host" . }}:{{ .Values.rabbitmq.service.port }}{{ .Values.broker.rabbitmqVhost }}
+{{- else -}}
 redis://:{{ .Values.redis.password }}@{{ template "mayan-edms.redis.host" . }}:{{ .Values.redis.redisPort }}/0
+{{- end -}}
 {{- end -}}
 
 {{/*
@@ -135,9 +163,8 @@ Determine the value of the MAYAN_DATABASES env var.
 Determine the value of the MAYAN_PIP_INSTALLS env var.
 */}}
 {{- define "mayan-edms.env.pip-installs" -}}
-{{- if .Values.objectstorage.enabled -}}
-django-storages boto3
-{{- end -}}
+{{- if .Values.objectstorage.enabled }} django-storages boto3{{- end -}}
+{{- if eq .Values.broker.type "rabbitmq" }} amqp==2.5.2{{- end -}}
 {{- end -}}
 
 {{/*
