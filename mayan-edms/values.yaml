@@ -10,6 +10,9 @@ fullnameOverride: ""
 
 tuning: {}
   # gunicornWorkers: 2
+  # gunicornMaxRequests: 500
+  # gunicornMaxRequestsJitters: 50
+  # gunicornWorkerClass: sync
   # fastQueueWorkers: 1
   # mediumQueueWorkers: 1
   # slowQueueWorkers: 1
