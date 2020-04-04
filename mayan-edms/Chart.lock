@@ -3,10 +3,10 @@ dependencies:
   repository: https://kubernetes-charts.storage.googleapis.com/
   version: 8.1.2
 - name: redis
-  repository: https://kubernetes-charts.storage.googleapis.com/
-  version: 10.5.6
+  repository: https://charts.bitnami.com/bitnami
+  version: 10.6.2
 - name: rabbitmq
   repository: https://charts.bitnami.com/bitnami
   version: 6.23.0
-digest: sha256:a910bc2ba22007f8b02f0914bb5a19eaba31a250c8fc5a79e5f695a5d6426c6c
-generated: "2020-04-02T19:59:54.103948-04:00"
+digest: sha256:a1b5082d4a9fc83bc98062311e3b156574000a9d22dca9dae61e512d5729dfcd
+generated: "2020-04-04T15:56:47.883696-04:00"

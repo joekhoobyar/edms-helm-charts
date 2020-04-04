@@ -57,6 +57,24 @@ postgresql:
 
 rabbitmq:
   enabled: false
+  extraSecrets:
+    load-definition:
+      load_definition.json: |
+        {
+          "vhosts": [
+            {
+              "name": "/mayan"
+            }
+          ]
+        }
+  rabbitmq:
+    username: mayan
+    password: mayanrabbitmqpassword
+    loadDefinition:
+      enabled: true
+      secretName: load-definition
+    extraConfiguration: |
+      management.load_definitions = /app/load_definition.json
 
 redis:
   enabled: true
