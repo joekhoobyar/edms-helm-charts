@@ -2,8 +2,8 @@ apiVersion: v2
 name: mayan-edms
 description: Mayan EDMS
 type: application
-version: 0.3.7
-appVersion: 3.4.11
+version: 0.3.9
+appVersion: 3.4.17
 keywords:
   - edms
   - dms
