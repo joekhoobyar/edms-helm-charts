@@ -1,6 +1,6 @@
 dependencies:
 - name: postgresql
-  repository: https://kubernetes-charts.storage.googleapis.com/
+  repository: https://charts.helm.sh/stable
   version: 8.1.2
 - name: redis
   repository: https://charts.bitnami.com/bitnami
@@ -8,5 +8,5 @@ dependencies:
 - name: rabbitmq
   repository: https://charts.bitnami.com/bitnami
   version: 6.23.0
-digest: sha256:a1b5082d4a9fc83bc98062311e3b156574000a9d22dca9dae61e512d5729dfcd
-generated: "2020-04-04T15:56:47.883696-04:00"
+digest: sha256:48326dbfc43ce4451964e3967458e756360ec122bf98362b8e264df3fc93c0ea
+generated: "2021-01-18T15:14:06.395305-05:00"
