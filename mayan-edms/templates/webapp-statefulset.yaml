@@ -106,6 +106,8 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
+            - name: pip-cache
+              mountPath: /home/mayan/.cache/pip
             - name: {{ template "mayan-edms.name" . }}-media
               mountPath: /var/lib/mayan
           {{- with .Values.extraVolumeMounts }}
@@ -124,6 +126,8 @@ spec:
         {{- toYaml . | nindent 8 }}
     {{- end }}
       volumes:
+        - name: pip-cache
+          emptyDir: {}
     {{- with .Values.extraVolumes }}
         {{- toYaml . | nindent 8 }}
     {{- end }}
