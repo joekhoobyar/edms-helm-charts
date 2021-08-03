@@ -4,8 +4,10 @@ metadata:
   name: {{ include "edms-analyzer.fullname" . }}
   labels:
     {{- include "edms-analyzer.labels" . | nindent 4 }}
+{{- with .Values.annotations }}
   annotations:
-    {{- include "edms-analyzer.annotations" . | nindent 4 }}
+    {{- toYaml . | nindent 4 }}
+{{- end }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
