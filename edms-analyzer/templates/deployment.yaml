@@ -4,6 +4,8 @@ metadata:
   name: {{ include "edms-analyzer.fullname" . }}
   labels:
     {{- include "edms-analyzer.labels" . | nindent 4 }}
+  annotations:
+    {{- include "edms-analyzer.annotations" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
