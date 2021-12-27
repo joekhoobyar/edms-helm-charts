@@ -35,6 +35,8 @@ spec:
               value: '1'
             - name: MAYAN_PIP_INSTALLS
               value: {{ include "mayan-edms.env.pip-installs" . | quote }}
+            - name: MAYAN_LOCK_MANAGER_BACKEND
+              value: "mayan.apps.lock_manager.backends.redis_lock.RedisLock"
           {{- if .Values.tuning.gunicornWorkers }}
             - name: MAYAN_GUNICORN_WORKERS
               value: {{ .Values.tuning.gunicornWorkers | quote }}
@@ -64,7 +66,7 @@ spec:
               value: {{ .Values.tuning.slowQueueWorkers | quote }}
           {{- end }}
           {{- if .Values.objectstorage.enabled }}
-            - name: MAYAN_DOCUMENTS_STORAGE_BACKEND
+            - name: MAYAN_DOCUMENTS_FILE_STORAGE_BACKEND
               value: storages.backends.s3boto3.S3Boto3Storage
           {{- end }}
           envFrom:

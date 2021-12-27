@@ -139,9 +139,9 @@ Determine the value of the MAYAN_CELERY_BROKEN_URL env var.
 */}}
 {{- define "mayan-edms.env.celery-broker-url" -}}
 {{- if eq .Values.broker.type "rabbitmq" -}}
-amqp://{{ .Values.rabbitmq.rabbitmq.username }}:{{ .Values.rabbitmq.rabbitmq.password }}@{{ template "mayan-edms.rabbitmq.host" . }}:{{ .Values.rabbitmq.service.port }}{{ .Values.broker.rabbitmqVhost }}
+amqp://{{ .Values.rabbitmq.rabbitmq.auth.username }}:{{ .Values.rabbitmq.rabbitmq.auth.password }}@{{ template "mayan-edms.rabbitmq.host" . }}:{{ .Values.rabbitmq.service.port }}{{ .Values.broker.rabbitmqVhost }}
 {{- else -}}
-redis://:{{ .Values.redis.password }}@{{ template "mayan-edms.redis.host" . }}:{{ .Values.redis.redisPort }}/0
+redis://:{{ .Values.redis.auth.password }}@{{ template "mayan-edms.redis.host" . }}:{{ .Values.redis.redisPort }}/0
 {{- end -}}
 {{- end -}}
 
@@ -149,7 +149,14 @@ redis://:{{ .Values.redis.password }}@{{ template "mayan-edms.redis.host" . }}:{
 Determine the value of the MAYAN_CELERY_RESULT_BACKEND env var.
 */}}
 {{- define "mayan-edms.env.celery-result-backend" -}}
-redis://:{{ .Values.redis.password }}@{{ template "mayan-edms.redis.host" . }}:{{ .Values.redis.redisPort }}/1
+redis://:{{ .Values.redis.auth.password }}@{{ template "mayan-edms.redis.host" . }}:{{ .Values.redis.redisPort }}/1
+{{- end -}}
+
+{{/*
+Determine the value of the MAYAN_LOCK_MANAGER_BACKEND_ARGUMENTS env var.
+*/}}
+{{- define "mayan-edms.env.lock-manager-backend-arguments" -}}
+{'redis_url':'redis://:{{ .Values.redis.auth.password }}@{{ template "mayan-edms.redis.host" . }}:{{ .Values.redis.redisPort }}/2'}
 {{- end -}}
 
 {{/*
@@ -176,5 +183,5 @@ Determine the value of the MAYAN_STORAGE_BACKEND_ARGUMENTS env var.
 {{- if .Values.objectstorage.secretKey -}},'secret_key':'{{- .Values.objectstorage.secretKey -}}'{{- end -}}
 {{- if .Values.objectstorage.defaultAcl -}},'default_acl':'{{- .Values.objectstorage.defaultAcl -}}'{{- end -}}
 {{- if .Values.objectstorage.endpointUrl -}},'endpoint_url':'{{- .Values.objectstorage.endpointUrl -}}'{{- end -}}
-,'verify':'{{- if .Values.objectstorage.verifyTls -}}true{{- else -}}false{{- end -}}'}
+,'verify':'{{- if .Values.objectstorage.verifyTls -}}True{{- else -}}False{{- end -}}'}
 {{- end -}}

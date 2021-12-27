@@ -61,16 +61,26 @@ postgresql:
 rabbitmq:
   enabled: false
   rabbitmq:
-    username: mayan
     password: mayanrabbitmqpassword
   service:
     port: 5672
+  replicaCount: 2
+  auth:
+    username: mayan
 
 redis:
   enabled: true
   # nameOverride: redis
-  password: mayanredispassword
+  auth:
+    password: mayanredispassword
   redisPort: 6379
+  replica:
+    replicaCount: 2
+  commonConfiguration: |-
+    maxmemory-policy allkeys-lru
+    appendonly yes
+    save ""
+    databases 3
 
 ## Broker configuration
 broker:
