@@ -41,18 +41,6 @@ spec:
             - name: MAYAN_GUNICORN_WORKERS
               value: {{ .Values.tuning.gunicornWorkers | quote }}
           {{- end }}
-          {{- if .Values.tuning.gunicornMaxRequests }}
-            - name: MAYAN_GUNICORN_MAX_REQUESTS
-              value: {{ .Values.tuning.gunicornMaxRequests | quote }}
-          {{- end }}
-          {{- if .Values.tuning.gunicornMaxRequestsJitters }}
-            - name: MAYAN_GUNICORN_MAX_REQUESTS_JITTERS
-              value: {{ .Values.tuning.gunicornMaxRequestsJitters | quote }}
-          {{- end }}
-          {{- if .Values.tuning.gunicornWorkerClass }}
-            - name: MAYAN_GUNICORN_WORKER_CLASS
-              value: {{ .Values.tuning.gunicornWorkerClass | quote }}
-          {{- end }}
           {{- if .Values.tuning.fastQueueWorkers }}
             - name: MAYAN_WORKER_FAST_CONCURRENCY
               value: {{ .Values.tuning.fastQueueWorkers | quote }}

@@ -139,7 +139,7 @@ Determine the value of the MAYAN_CELERY_BROKEN_URL env var.
 */}}
 {{- define "mayan-edms.env.celery-broker-url" -}}
 {{- if eq .Values.broker.type "rabbitmq" -}}
-amqp://{{ .Values.rabbitmq.rabbitmq.auth.username }}:{{ .Values.rabbitmq.rabbitmq.auth.password }}@{{ template "mayan-edms.rabbitmq.host" . }}:{{ .Values.rabbitmq.service.port }}{{ .Values.broker.rabbitmqVhost }}
+amqp://{{ .Values.rabbitmq.auth.username }}:{{ .Values.rabbitmq.auth.password }}@{{ template "mayan-edms.rabbitmq.host" . }}:{{ .Values.rabbitmq.service.port }}/{{ .Values.broker.rabbitmqVhost }}
 {{- else -}}
 redis://:{{ .Values.redis.auth.password }}@{{ template "mayan-edms.redis.host" . }}:{{ .Values.redis.redisPort }}/0
 {{- end -}}
@@ -171,7 +171,7 @@ Determine the value of the MAYAN_PIP_INSTALLS env var.
 */}}
 {{- define "mayan-edms.env.pip-installs" -}}
 {{- if .Values.objectstorage.enabled }} django-storages boto3{{- end -}}
-{{- if eq .Values.broker.type "rabbitmq" }} amqp==2.5.2{{- end -}}
+{{/*- if eq .Values.broker.type "rabbitmq" }} amqp==2.6.1{{- end -*/}}
 {{- end -}}
 
 {{/*
