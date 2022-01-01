@@ -3,7 +3,7 @@ name: mayan-edms
 description: Mayan EDMS
 type: application
 version: 0.4.0
-appVersion: v4.0.21
+appVersion: v4.1.4
 keywords:
   - edms
   - dms
