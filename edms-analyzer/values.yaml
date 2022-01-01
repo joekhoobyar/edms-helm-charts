@@ -2,7 +2,7 @@
 replicaCount: 1
 image:
   repository: joekhoobyar/edms-analzyer
-  # tag: 20200318
+  # tag: 20211003
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []

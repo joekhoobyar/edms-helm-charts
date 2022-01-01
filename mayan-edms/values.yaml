@@ -10,9 +10,6 @@ fullnameOverride: ""
 
 tuning: {}
   # gunicornWorkers: 2
-  # gunicornMaxRequests: 500
-  # gunicornMaxRequestsJitters: 50
-  # gunicornWorkerClass: sync
   # fastQueueWorkers: 1
   # mediumQueueWorkers: 1
   # slowQueueWorkers: 1
@@ -60,17 +57,26 @@ postgresql:
 
 rabbitmq:
   enabled: false
-  rabbitmq:
-    username: mayan
-    password: mayanrabbitmqpassword
   service:
     port: 5672
+  replicaCount: 2
+  auth:
+    username: mayan
+    password: mayanrabbitmqpassword
 
 redis:
   enabled: true
   # nameOverride: redis
-  password: mayanredispassword
+  auth:
+    password: mayanredispassword
   redisPort: 6379
+  replica:
+    replicaCount: 2
+  commonConfiguration: |-
+    maxmemory-policy allkeys-lru
+    appendonly yes
+    save ""
+    databases 3
 
 ## Broker configuration
 broker:

@@ -1,12 +1,12 @@
 dependencies:
 - name: postgresql
-  repository: https://charts.helm.sh/stable
-  version: 8.1.2
+  repository: https://charts.bitnami.com/bitnami
+  version: 10.13.15
 - name: redis
   repository: https://charts.bitnami.com/bitnami
-  version: 10.6.2
+  version: 15.6.8
 - name: rabbitmq
   repository: https://charts.bitnami.com/bitnami
-  version: 6.23.0
-digest: sha256:48326dbfc43ce4451964e3967458e756360ec122bf98362b8e264df3fc93c0ea
-generated: "2021-01-18T15:14:06.395305-05:00"
+  version: 8.24.12
+digest: sha256:d1e0bee255fdf0915c92cbeea5224feb58411b843e906a9296c8f41e1ea2f750
+generated: "2021-12-26T17:47:20.102964-05:00"

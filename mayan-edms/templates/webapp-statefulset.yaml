@@ -35,21 +35,11 @@ spec:
               value: '1'
             - name: MAYAN_PIP_INSTALLS
               value: {{ include "mayan-edms.env.pip-installs" . | quote }}
+            - name: MAYAN_LOCK_MANAGER_BACKEND
+              value: "mayan.apps.lock_manager.backends.redis_lock.RedisLock"
           {{- if .Values.tuning.gunicornWorkers }}
             - name: MAYAN_GUNICORN_WORKERS
               value: {{ .Values.tuning.gunicornWorkers | quote }}
-          {{- end }}
-          {{- if .Values.tuning.gunicornMaxRequests }}
-            - name: MAYAN_GUNICORN_MAX_REQUESTS
-              value: {{ .Values.tuning.gunicornMaxRequests | quote }}
-          {{- end }}
-          {{- if .Values.tuning.gunicornMaxRequestsJitters }}
-            - name: MAYAN_GUNICORN_MAX_REQUESTS_JITTERS
-              value: {{ .Values.tuning.gunicornMaxRequestsJitters | quote }}
-          {{- end }}
-          {{- if .Values.tuning.gunicornWorkerClass }}
-            - name: MAYAN_GUNICORN_WORKER_CLASS
-              value: {{ .Values.tuning.gunicornWorkerClass | quote }}
           {{- end }}
           {{- if .Values.tuning.fastQueueWorkers }}
             - name: MAYAN_WORKER_FAST_CONCURRENCY
@@ -64,7 +54,7 @@ spec:
               value: {{ .Values.tuning.slowQueueWorkers | quote }}
           {{- end }}
           {{- if .Values.objectstorage.enabled }}
-            - name: MAYAN_DOCUMENTS_STORAGE_BACKEND
+            - name: MAYAN_DOCUMENTS_FILE_STORAGE_BACKEND
               value: storages.backends.s3boto3.S3Boto3Storage
           {{- end }}
           envFrom:
